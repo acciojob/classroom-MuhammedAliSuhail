@@ -21,6 +21,8 @@ return;
     public void addStudentTeacherPair(String student,String Teacher) {
 
         if (repo.StudentTeacherAssociationDB.containsKey(Teacher)) {
+            Teacher t=repo.teacherDB.get(Teacher);
+            repo.teacherDB.get(Teacher).setNumberOfStudents(t.getNumberOfStudents()+1);
             List<String> students = repo.StudentTeacherAssociationDB.get(Teacher);
             students.add(student);
             repo.StudentTeacherAssociationDB.put(Teacher, students);
@@ -28,6 +30,7 @@ return;
         }
         List<String> Students = new LinkedList<>();
         Students.add(student);
+        repo.teacherDB.get(Teacher).setNumberOfStudents(1);
         repo.StudentTeacherAssociationDB.put(Teacher, Students);
 
     }
